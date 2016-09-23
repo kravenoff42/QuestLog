@@ -13,8 +13,8 @@ function getCountryByCity($db)
     //$stmt->bindParam(':cityName', $cityName, PDO::PARAM_STR);
     $stmt->execute();
     $results = $stmt->fetchALL(PDO::FETCH_ASSOC);
-
-    return $results;
+echo "success";
+    //return $results;
 
   } catch (PDOException $e)
   {
@@ -22,13 +22,13 @@ function getCountryByCity($db)
   }
 
 }
-$counrties = getCountryByCity($db);
+//$counrties = getCountryByCity($db);
 
-while ($counrty = $counrties->fetch())
-{
-	echo "Search Results: <br/>";
-  echo $country['Name'];
-	//echo $country['cntName'].", ".$country['cntCode'].", ".$country['District']."<br/>";
-}
+//while ($counrty = $counrties->fetch())
+//{
+//	echo "Search Results: <br/>";
+//  echo $country['Name'];
+//	//echo $country['cntName'].", ".$country['cntCode'].", ".$country['District']."<br/>";
+//}
 
 ?>
