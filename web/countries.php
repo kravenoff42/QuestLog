@@ -22,7 +22,7 @@ function getCountryByCity($db)
   }
 
 }
-$counrties = getCountryByCity($db, $cityName);
+$counrties = getCountryByCity($db);
 
 while ($counrty = $counrties->fetch())
 {
