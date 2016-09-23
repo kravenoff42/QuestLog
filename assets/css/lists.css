@@ -1,0 +1,11 @@
+.items{
+  padding-left:20px;
+  border-left:2px solid #000;
+  font-size:30px;
+  margin:0 0 36px;
+  width:100%
+}
+
+span.done{
+  text-decoration:line-through;
+}

@@ -1,0 +1,20 @@
+.navbar{
+  margin: 0;
+}
+.navbar ul{
+  padding: 0;
+}
+  .navbar a{
+    cursor: pointer;
+    text-decoration: none;
+    padding: 7px;
+    border-radius: 5px;
+    background-color: #0af;
+    color: #fff;
+    margin-left: 5px;
+    transition: all 500ms
+  }
+  .navbar li{
+    list-style: none;
+    display: inline-block;
+  }
