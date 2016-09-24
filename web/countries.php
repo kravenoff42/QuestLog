@@ -10,9 +10,7 @@ $cityName = "Barcelona";
     //$stmt = $db->prepare("SELECT country.Name AS 'cntName', Code AS 'cntCode', District FROM country JOIN city ON CountryCode = Code WHERE city.Name = :cityName");
     //$stmt->bindParam(':cityName', $cityName, PDO::PARAM_STR);
     $stmt->execute();
-    $results = $stmt->fetchALL(PDO::FETCH_ASSOC);
 
-echo $results;
 
   } catch (PDOException $e)
   {
@@ -21,7 +19,7 @@ echo $results;
 
 
 
-while ($counrty = $results->fetch())
+while ($country = $stmt->fetch(PDO::FETCH_ASSOC))
 {
 //	echo "Search Results: <br/>";
   echo $country['Name'];
