@@ -13,8 +13,8 @@ function getCountryByCity($db)
     //$stmt->bindParam(':cityName', $cityName, PDO::PARAM_STR);
     $stmt->execute();
     $results = $stmt->fetchALL(PDO::FETCH_ASSOC);
-echo "success";
-    //return $results;
+
+return $results;
 
   } catch (PDOException $e)
   {
@@ -22,7 +22,7 @@ echo "success";
   }
 
 }
-//$counrties = getCountryByCity($db);
+$counrties = getCountryByCity($db);
 
 while ($counrty = $counrties->fetch())
 {
