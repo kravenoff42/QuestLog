@@ -1,34 +1,18 @@
 <?php
-require_once('conn.php');
-
-$cityName = "Barcelona";
-
-function getCountryByCity($db, $cityName)
+//continues session
+session_start();
+//pulls in external functions and vars
+require_once("models/db.php");
+require_once("models/users.php");
+require_once("models/lists.php");
+require_once("models/items.php");
+require_once("views/functions.php");
+//check if user is logged in
+if (isset($_SESSION['userName']))
 {
-  try
-  {
-    $stmt = $db->prepare("SELECT *  FROM city");
-
-    //$stmt = $db->prepare("SELECT country.Name AS 'cntName', Code AS 'cntCode', District FROM country JOIN city ON CountryCode = Code WHERE city.Name = :cityName");
-    $stmt->bindParam(':cityName', $cityName, PDO::PARAM_STR);
-    $stmt->execute();
-    $results = $stmt->fetchALL(PDO::FETCH_ASSOC);
-
-    return $results;
-
-  } catch (PDOException $e)
-  {
-    die("could not find any country with $cityName as a city.");
-  }
-
+  $firstName = $_SESSION['firstName'];
+  $admin = $_SESSION['admin'];
 }
-$counrties = getCountryByCity($db, $cityName);
-
-while ($counrty = $counrties->fetch())
-{
-	echo "Search Results: <br/>";
-  echo $country['Name'];
-	//echo $country['cntName'].", ".$country['cntCode'].", ".$country['District']."<br/>";
-}
-
-?>
+include_once('views/header.php');
+include_once('views/landing.php');
+include_once('views/footer.php'); ?>
