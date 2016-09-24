@@ -24,11 +24,11 @@ echo "success";
 }
 //$counrties = getCountryByCity($db);
 
-//while ($counrty = $counrties->fetch())
-//{
+while ($counrty = $counrties->fetch())
+{
 //	echo "Search Results: <br/>";
-//  echo $country['Name'];
+  echo $country['Name'];
 //	//echo $country['cntName'].", ".$country['cntCode'].", ".$country['District']."<br/>";
-//}
+}
 
 ?>
