@@ -5,10 +5,8 @@ $cityName = "Barcelona";
 
   try
   {
-    $stmt = $db->prepare("SELECT * FROM city");
-
-    //$stmt = $db->prepare("SELECT country.Name AS 'cntName', Code AS 'cntCode', District FROM country JOIN city ON CountryCode = Code WHERE city.Name = :cityName");
-    //$stmt->bindParam(':cityName', $cityName, PDO::PARAM_STR);
+    $stmt = $db->prepare("SELECT country.Name AS 'cntName', Code AS 'cntCode', District FROM country JOIN city ON CountryCode = Code WHERE city.Name = :cityName");
+    $stmt->bindParam(':cityName', $cityName, PDO::PARAM_STR);
     $stmt->execute();
 
 
@@ -21,9 +19,8 @@ $cityName = "Barcelona";
 
 while ($country = $stmt->fetch(PDO::FETCH_ASSOC))
 {
-//	echo "Search Results: <br/>";
-  echo $country['Name'];
-//	//echo $country['cntName'].", ".$country['cntCode'].", ".$country['District']."<br/>";
+	echo "Search Results: <br/>";
+  echo $country['cntName'].", ".$country['cntCode'].", ".$country['District']."<br/>";
 }
 
 ?>
