@@ -7,9 +7,9 @@ html, body{
   font-family: 'Montserrat', sans serif;
 }
 #content{
-  margin-top: .9vh;
+  margin-top: 0;
   margin-left: 10vw;
-  height: 83vh;
+  height: 82vh;
 }
 td{
   padding-bottom: 5px;

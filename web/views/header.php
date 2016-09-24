@@ -13,10 +13,7 @@
       <nav class="navbar">
         <ul>
           <?php
-          if(isset($_SESSION['userName']))
-          {
-            displayWelcome($firstName);
-          }?>
+          ?>
           <li><a href="index.php">Home</a></li>
           <li><a href="itemsViewer.php">My Lists</a></li>
           <?php
@@ -27,12 +24,17 @@
             {
               echo'<li><a href="admin.php">Admin</a></li>';
             }
+            if(isset($_SESSION['userName']))
+            {
+              displayWelcome($firstName);
+            }
           }
           else
           {
             echo'<li><a href="signup.php">Sign Up</a></li>';
             echo'<li><a href="login.php">Login</a></li>';
           }
+
           ?>
         </ul>
       </nav>

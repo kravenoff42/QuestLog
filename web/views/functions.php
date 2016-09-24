@@ -4,9 +4,9 @@ function displayWelcome($firstName)
 {
   //prints currentUsers first name
 
-    echo "<span>";
+    echo "<p>";
       echo "Welcome, $firstName!";
-    echo "</span>";
+    echo "</p>";
 
 }
 
