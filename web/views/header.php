@@ -26,7 +26,7 @@
             }
             if(isset($_SESSION['userName']))
             {
-              displayWelcome($firstName);
+                echo "<p>Welcome, $firstName!</p>";
             }
           }
           else

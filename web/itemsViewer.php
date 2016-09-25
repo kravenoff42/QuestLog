@@ -27,13 +27,19 @@ else
 $listID = 1;
 if(isset($_POST['listID']))
 {
-$action = $_POST['action'];
-$itemID = $_POST['itemID'];
-$itemText = $_POST['itemText'];
-$listID = $_POST['listID'];
-$dueDate = $_POST['dueDate'];
-$dueTime = $_POST['dueTime'];
+  if (isset($_POST['itemID'])) {
+    $itemID = $_POST['itemID'];
+  }
+  $action = $_POST['action'];
+  $listID = $_POST['listID'];
+  if ($action == "Add" || $action == "Update")
+  {
+    $itemText = $_POST['itemText'];
+    $dueDate = $_POST['dueDate'];
+    $dueTime = $_POST['dueTime'];
+  }
 }
+
 include_once('views/header.php');
 include_once('views/itemsHeader.php');
 
@@ -67,7 +73,16 @@ if (!empty($action))
 }
 $listItems = getItemsByListID($db, $listID);
 displayItems($listItems);
-displayItemsForm($db, $listID, $itemID);
+
+if (!isset($itemID))
+{
+  displayAddForm($listID);
+}
+else
+{
+  //Update Form
+  displayUpdateForm($db, $itemID);
+}
 
 include_once('views/tableclose.php');
 include_once('views/footer.php') ?>

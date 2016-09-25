@@ -47,5 +47,54 @@ function displayItems($listItems)
       echo "\n\t</tr>";
   }
 }
+function displayUpdateForm($db, $itemID)
+{
+  $itemInfo = getItemsByItemID($db, $itemID);
 
+  echo "\n\t<form action='".$_SERVER['SCRIPT_NAME']."' method='post'>";
+  while ($item = $itemInfo->fetch(PDO::FETCH_ASSOC) )
+  {
+    echo "\n\t<tr>";
+      echo "\n\t\t<td>";
+        echo "\n\t\t\t<input type='hidden' name='listID' value='".$item['listID']."' />";
+        echo "\n\t\t\t<input type='hidden' name='itemID' value='".$item['itemID']."' />";
+      echo "\n\t\t</td>";
+      echo "\n\t\t<td>";
+        echo "\n\t\t\t<input type='text' name='itemText' value='".$item['itemText']."' />";
+      echo "\n\t\t</td>";
+      echo "\n\t\t<td>";
+        echo "\n\t\t\t<input type='date' name='dueDate' value='".$item['dueDate']."' />";
+        echo "\n\t\t\t<input type='time' name='dueTime' value='".$item['dueTime']."' />";
+      echo "\n\t\t</td>";
+      echo "\n\t\t<td>";
+      echo "\n\t\t\t<input type='hidden' name='action' value='Update'/>";
+      echo "\n\t\t\t<button type='submit' class='update'><i class='material-icons'>refresh</i></button>";
+      echo "\n\t\t</td>";
+    echo "\n\t</tr>";
+  echo "</form>";
+  }
+}
+function displayAddForm($listID)
+{
+  echo "<form action='".$_SERVER['SCRIPT_NAME']."' method='post'>";
+  echo "\n\t<tr>";
+
+
+    echo "\n\t<td>";
+      echo "\n\t\t\t<input type='hidden' name='listID' value='".$listID."' />";
+    echo "\n\t\t</td>";
+    echo "\n\t\t<td>";
+      echo "\n\t\t\t<input type='text' name='itemText' />";
+    echo "\n\t\t</td>";
+    echo "\n\t\t<td>";
+      echo "\n\t\t\t<input type='date' name='dueDate' />";
+      echo "\n\t\t\t<input type='time' name='dueTime' />";
+    echo "\n\t\t</td>";
+    echo "\n\t\t<td>";
+    echo "\n\t\t\t<input type='hidden' name='action' value='Add'/>";
+    echo "\n\t\t\t<button type='submit' class='add'><i class='material-icons'>add</i></button>";
+    echo "\n\t\t</td>";
+  echo "\n\t</tr>";
+  echo "</form>";
+}
 ?>

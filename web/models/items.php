@@ -80,6 +80,7 @@ function getItemsByItemID($db, $itemID)
     $stmt = $db->prepare("SELECT * FROM items WHERE itemID = :itemID");
     $stmt->bindParam(':itemID', $itemID, PDO::PARAM_INT);
     $stmt->execute();
+    return $stmt;
   }
   catch (PDOException $e)
   {

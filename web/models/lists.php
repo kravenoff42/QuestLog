@@ -44,8 +44,8 @@ function getListsByUserID($db, $userID)
   {
     $stmt = $db->prepare("SELECT * FROM lists WHERE userID = :userID");
     $stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
-    $result = $stmt->execute();
-    return $result;
+    $stmt->execute();
+    return $stmt;
   }
   catch (Exception $e)
   {
