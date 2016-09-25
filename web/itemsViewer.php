@@ -6,6 +6,7 @@ require_once("models/db.php");
 require_once("models/users.php");
 require_once("models/lists.php");
 require_once("models/items.php");
+require_once("views/itemsViews.php");
 require_once("views/functions.php");
 //check if user is logged in
 
@@ -45,7 +46,7 @@ if (!empty($action))
       addItem($db, $listID, $itemText, $dueDate, $dueTime);
       break;
     case "Edit":
-       //logic is in displayForm
+       //logic is below
       break;
     case "Update":
       updateItemText($db, $itemID, $itemText, $dueDate, $dueTime);
@@ -64,8 +65,8 @@ if (!empty($action))
       break;
    }
 }
-
-displayItems($db, $listID);
+$listItems = getItemsByListID($db, $listID);
+displayItems($listItems);
 displayItemsForm($db, $listID, $itemID);
 
 include_once('views/tableclose.php');

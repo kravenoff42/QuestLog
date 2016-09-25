@@ -6,19 +6,29 @@
 html, body{
   font-family: 'Montserrat', sans serif;
 }
+.header{
+  text-align: center;
+  margin: 0;
+  height: 10vh;
+}
 #content{
   margin-top: 0;
   margin-left: 10vw;
-  height: 82vh;
+  height: 80vh;
 }
+.footer{
+  text-align: center;
+  background-color: #124;
+  color: #fff;
+  padding: 1vh 0;
+  height: 10vh;
+}
+
 td{
   padding-bottom: 5px;
   text-align: center;
 }
-.header{
-  text-align: center;
-  margin: 0;
-}
+
 .signup-success{
   padding: 3px;
   background-color: #9f9;
@@ -29,9 +39,8 @@ td{
   background-image: url(img/quetLogLandingHero.jpg);
   background-color: #000;
   color: #fff;
-  height: 83vh;
+  height: inherit;
   width: 110vw;
-  background-size: cover;
   left: -10vw;
   position: absolute;
   text-align: center;
@@ -44,11 +53,4 @@ td{
 }
 .landing p{
   font-size: 24px;
-}
-.footer{
-  text-align: center;
-  background-color: #124;
-  color: #fff;
-  padding: 50px 10%;
-  height: 10vh;
 }

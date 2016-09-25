@@ -1,6 +1,5 @@
 .navbar{
   margin: 0;
-  height: 8vh;
 }
 .navbar ul{
   padding: 0;
@@ -18,4 +17,7 @@
   .navbar li{
     list-style: none;
     display: inline-block;
+  }
+  .navbar p{
+    margin: 1vh 0;
   }

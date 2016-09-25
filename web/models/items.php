@@ -61,4 +61,29 @@ function addItem($db, $listID, $itemText, $dueDate, $dueTime)
     }
   }
 }
+function getItemsByListID($db, $listID)
+{
+  try {
+    $stmt = $db->prepare("SELECT * FROM items WHERE listID = :listID");
+    $stmt->bindParam(':listID', $listID, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt;
+
+  } catch (Exception $e) {
+    die("Could not find items for this list.");
+  }
+}
+function getItemsByItemID($db, $itemID)
+{
+  try
+  {
+    $stmt = $db->prepare("SELECT * FROM items WHERE itemID = :itemID");
+    $stmt->bindParam(':itemID', $itemID, PDO::PARAM_INT);
+    $stmt->execute();
+  }
+  catch (PDOException $e)
+  {
+    die("Could not find data for $listID.");
+  }
+}
  ?>
