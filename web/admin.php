@@ -6,7 +6,7 @@ require_once("models/db.php");
 require_once("models/users.php");
 require_once("models/lists.php");
 require_once("models/items.php");
-require_once("views/functions.php");
+require_once("views/adminViews.php");
 //check if user is logged in
 if (isset($_SESSION['userID']))
 {
@@ -28,13 +28,22 @@ if(isset($_POST['action']))
 {
   //grab data from POST var
   $action = $_POST['action'];
-  $currUserID = $_POST['userID'];
-  $currUserName = $_POST['userName'];
-  $currFirstName =$_POST['firstName'];
-  $currLastName = $_POST['lastName'];
-  $currEmail = $_POST['email'];
-  $currAdmin = $_POST['admin'];
-  $currPassword = $_POST['password'];
+  if(isset($_POST['userID']))
+  {
+    $currUserID = $_POST['userID'];
+  }
+  if(isset($_POST['userName']))
+  {
+    $currUserName = $_POST['userName'];
+    $currFirstName =$_POST['firstName'];
+    $currLastName = $_POST['lastName'];
+    $currEmail = $_POST['email'];
+    $currAdmin = $_POST['admin'];
+    if (isset($_POST['password']))
+    {
+      $currPassword = $_POST['password'];
+    }
+  }
 }
 
 include_once('views/header.php');
@@ -50,7 +59,7 @@ if (!empty($action))
       addUser($db, $currFirstName, $currLastName, $currUserName, $currPassword, $currEmail, $currAdmin);
       break;
     case "Edit":
-       //logic is in displayForm()
+       //logic is down below
       break;
     case "Update":
       updateUser($db, $currUserID, $currFirstName, $currLastName, $currUserName, $currEmail, $currAdmin);
@@ -63,7 +72,16 @@ if (!empty($action))
    }
 }
 displayUsers($db);
-displayAdminForm($db, $currUserID, $userID);
+if (!isset($currUserID))
+{
+  displayUserAddForm();
+}
+//fires off if the $currUserID var has a value
+else
+{
+  //Update Form
+  displayUserUpdateForm($db, $currUserID, $userID);
+}
 
 include_once('views/tableclose.php');
 include_once('views/footer.php'); ?>

@@ -2,11 +2,14 @@
 /*******deletes data from items table**********/
 function deleteItem($db, $itemID)
 {
-  try {
+  try
+  {
     $stmt = $db->prepare("DELETE FROM items WHERE itemID = :itemID");
     $stmt->bindParam(':itemID', $itemID, PDO::PARAM_INT);
     $stmt->execute();
-  } catch (PDOException $e) {
+  }
+  catch (PDOException $e)
+  {
     die("Could not delete Item.");
   }
 }
@@ -14,14 +17,17 @@ function deleteItem($db, $itemID)
 /*******updates text for specified item**********/
 function updateItemText($db, $itemID, $itemText, $dueDate, $dueTime)
 {
-  try {
+  try
+  {
     $stmt = $db->prepare("UPDATE items SET itemText = :itemText , dueDate = :dueDate, dueTime = :dueTime WHERE itemID = :itemID");
     $stmt->bindParam(':itemText', $itemText, PDO::PARAM_STR);
     $stmt->bindParam(':itemID', $itemID, PDO::PARAM_INT);
     $stmt->bindParam(':dueDate', $dueDate);
     $stmt->bindParam(':dueTime', $dueTime);
     $stmt->execute();
-  } catch (PDOException $e) {
+  }
+  catch (PDOException $e)
+  {
     die("Could not Update Item: $itemText");
   }
 }
@@ -32,12 +38,15 @@ function updateItemStatus($db, $itemID, $action)
     {$status=0;}
   elseif ($action=="Undone")
     {$status=1;}
-  try {
+  try
+  {
     $stmt = $db->prepare("UPDATE items SET status = :status WHERE itemID = :itemID");
     $stmt->bindParam(':status', $status, PDO::PARAM_INT);
     $stmt->bindParam(':itemID', $itemID, PDO::PARAM_INT);
     $stmt->execute();
-  } catch (PDOException $e) {
+  }
+  catch (PDOException $e)
+  {
     die("Could not Update Item: $itemID");
   }
 }
@@ -63,13 +72,15 @@ function addItem($db, $listID, $itemText, $dueDate, $dueTime)
 }
 function getItemsByListID($db, $listID)
 {
-  try {
+  try
+  {
     $stmt = $db->prepare("SELECT * FROM items WHERE listID = :listID");
     $stmt->bindParam(':listID', $listID, PDO::PARAM_INT);
     $stmt->execute();
     return $stmt;
-
-  } catch (Exception $e) {
+  }
+  catch (PDOException $e)
+  {
     die("Could not find items for this list.");
   }
 }

@@ -123,13 +123,28 @@ function getUserByID($db, $currUserID)
     //gets info from that userID
     $stmt = $db->prepare("SELECT * FROM users WHERE userID = :userID");
     $stmt->bindParam(':userID', $currUserID, PDO::PARAM_INT);
-    $result = $stmt->execute();
-    return $result;
+    $stmt->execute();
+    return $stmt;
   }
   catch (PDOException $e)
   {
     //returns failure message
     die("Could not find data for $currUserID.");
   }
+}
+function getAllUserInfo($db)
+{
+  try
+  {
+    $stmt = $db->prepare("SELECT * FROM users");
+    $stmt->execute();
+    return $stmt;
+  }
+  catch (PDOException $e)
+  {
+    die("Could not find Users.");
+  }
+
+
 }
  ?>

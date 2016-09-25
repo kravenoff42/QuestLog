@@ -7,7 +7,6 @@ require_once("models/users.php");
 require_once("models/lists.php");
 require_once("models/items.php");
 require_once("views/itemViews.php");
-require_once("views/functions.php");
 //check if user is logged in
 
 if (isset($_SESSION['userName']))
