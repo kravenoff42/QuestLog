@@ -52,15 +52,38 @@ function getListsByUserID($db, $userID)
     die("Could not find lists for user: $userID.");
   }
 }
-/*************builds title*****************/
 function getListNameByID($db, $listID)
 {
-  $stmt = $db->prepare("SELECT listName FROM lists WHERE listID = :listID");
-  $stmt->bindParam(':listID', $listID, PDO::PARAM_INT);
-  $stmt->execute();
+  try {
+    $stmt = $db->prepare("SELECT listName FROM lists WHERE listID = :listID");
+    $stmt->bindParam(':listID', $listID, PDO::PARAM_INT);
+    $stmt->execute();
 
-  $list = $stmt->fetch();
-  return $list['listName'];
+    $list = $stmt->fetch();
+    return $list['listName'];
+  }
+  catch (Exception $e)
+  {
+    die("Could not find List name for ID: $listID");
+  }
+
+
 
 }
+function getListByListID($db, $listID)
+{
+  try
+  {
+    $stmt = $db->prepare("SELECT * FROM lists WHERE listID = :listID");
+    $stmt->bindParam(':listID', $listID, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+  }
+  catch (Exception $e)
+  {
+    die("Could not find info on list #$listID");
+  }
+}
+
+
 ?>

@@ -6,6 +6,7 @@ require_once("models/db.php");
 require_once("models/users.php");
 require_once("models/lists.php");
 require_once("models/items.php");
+require_once("views/listViews.php");
 require_once("views/functions.php");
 //check if user is logged in
 if (isset($_SESSION['userID']))
@@ -25,8 +26,15 @@ else
 if(isset($_POST['action']))
 {
   $action = $_POST['action'];
-  $listID = $_POST['listID'];
-  $listName = $_POST['listName'];
+  if(isset($_POST['listID']))
+  {
+    $listID = $_POST['listID'];
+
+  }
+  if(isset($_POST['listName']))
+  {
+    $listName = $_POST['listName'];
+  }
 }
 
 
@@ -53,6 +61,15 @@ if (isset($action))
 include_once('views/header.php');
 echo "<a href='itemsViewer.php' >< Back to Lists</a><br/><br/>";
 displayLists($db, $userID);
-displayListsForm($db, $listID, $listName);
+if (empty($listID))
+{
+  //Add Form
+  displayListAddForm();
+}
+else
+{
+  //Update Form
+  displayListUpdateForm($db, $listID);
+}
 include_once('views/footer.php');
 ?>

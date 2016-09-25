@@ -97,4 +97,56 @@ function displayAddForm($listID)
   echo "\n\t</tr>";
   echo "</form>";
 }
+
+/*************builds drop menu***********/
+function displayListsDropdown($db, $userID)
+{
+  $lists = getListsByUserID($db, $userID);
+  echo "<form action='".$_SERVER['SCRIPT_NAME']."' method='post'>";
+    echo "<select name='listID'>";
+      while ($list = $lists->fetch(PDO::FETCH_ASSOC) )
+      {
+        echo "<option value='".$list['listID']."'>".$list['listName']."</option>\n\t";
+      }
+      echo "<input type='submit' />";
+    echo "</select>";
+  echo "</form>";
+}
+
+function displayLists($db, $userID)
+{
+  try
+  {
+    $lists = getListsByUserID($db, $userID);
+    echo "<table>";
+    while ($list = $lists->fetch(PDO::FETCH_ASSOC) )
+    {
+      echo "\n\t<tr>";
+      echo "\n\t\t<td>";
+      echo $list['listName'];
+      echo "\n\t\t<td>";
+        echo "<form action='".$_SERVER['SCRIPT_NAME']."' method='post'>";
+          echo "\n\t\t\t<input type='hidden' name='listName' value='".$list['listName']."'/>";
+          echo "\n\t\t\t<input type='hidden' name='listID' value='".$list['listID']."'/>";
+          echo "\n\t\t\t<input type='hidden' name='action' value='Edit'/>";
+          echo "\n\t\t\t<button type='submit' class='edit' ><i class='material-icons'>edit</i></button>";
+        echo "</form>";
+      echo "\n\t\t</td>";
+      echo "\n\t\t<td>";
+        echo "<form action='".$_SERVER['SCRIPT_NAME']."' method='post'>";
+          echo "\n\t\t\t<input type='hidden' name='listName' value='".$list['listName']."'/>";
+          echo "\n\t\t\t<input type='hidden' name='listID' value='".$list['listID']."'/>";
+          echo "\n\t\t\t<input type='hidden' name='action' value='Delete'/>";
+          echo "\n\t\t\t<button type='submit' class='delete'><i class='material-icons'>delete</i></button>";
+        echo "</form>";
+      echo "\n\t\t</td>";
+    echo "\n\t</tr>";
+    }
+    echo "</table>";
+  }
+  catch (PDOException $e)
+  {
+    die("Cannot display your lists.");
+  }
+}
 ?>
