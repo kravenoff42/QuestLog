@@ -16,12 +16,12 @@ function getUserByUserName($db, $userName)
   }
 
 }
-function insertNewUserAsUser($db, $firstName, $lastName, $email, $userName, $p4swrd)
+function insertNewUserAsUser($db, $firstName, $lastName, $email, $userName, $password)
 {
   try
   {
     //hashes entered password
-    $hashPass = password_hash($p4swrd, PASSWORD_DEFAULT);
+    $hashPass = password_hash($password, PASSWORD_DEFAULT);
     //inserts new user into system
     $stmt = $db->prepare("INSERT INTO users SET firstName = :firstName, lastName = :lastName, email = :email, usrn4m = :usrn4m, p4swrd = :p4swrd");
     $stmt->bindParam(':firstName', $firstName, PDO::PARAM_STR);
